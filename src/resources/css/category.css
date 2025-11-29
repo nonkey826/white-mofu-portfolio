@@ -1,0 +1,36 @@
+.category-box {
+    margin-top: 20px;
+}
+
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.category-table th,
+.category-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.category-table th {
+    background: #fff8f2;
+    font-weight: bold;
+}
+
+button {
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: #4daaff;
+    color: white;
+}
+
+.btn-delete {
+    background: #ff6b6b;
+    color: white;
+}

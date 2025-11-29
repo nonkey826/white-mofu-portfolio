@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', '白もふ図鑑')</title>
 
+    @yield('css')   {{-- ← これを追加！ --}}
+
     <style>
         body {
             background: #fffaf5 url('/images/bg_paws.png') repeat;
