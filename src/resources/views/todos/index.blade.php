@@ -29,38 +29,49 @@
             追加
         </button>
     </form>
+{{-- Todo一覧 --}}
+<table class="todo-table" style="width:100%; margin-top:30px;">
+    @foreach ($todos as $todo)
+        <tr style="border-bottom:1px solid #eee;">
 
-    {{-- Todo一覧 --}}
-    <table class="todo-table" style="width:100%; margin-top:30px;">
-        @foreach ($todos as $todo)
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:12px; width:60%;">{{ $todo->content }}</td>
-                <td style="padding:12px; width:20%; color:#777;">{{ $todo->category->name }}</td>
+            {{-- 内容編集欄（更新フォーム） --}}
+            <td style="padding:12px; width:50%;">
+                <form action="{{ route('todos.update') }}" method="POST" style="display:flex; gap:10px;">
+                    @csrf
+                    @method('PATCH')
 
-                {{-- 更新 --}}
-                <td style="padding:12px; width:10%;">
-                    <form action="/todos/update" method="POST">
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="id" value="{{ $todo->id }}">
-                        <button style="padding:6px 12px; background:#0000ff; color:white; border:none; border-radius:4px;">
-                            更新
-                        </button>
-                    </form>
-                </td>
+                    <input type="hidden" name="id" value="{{ $todo->id }}">
 
-                {{-- 削除 --}}
-                <td style="padding:12px; width:10%;">
-                    <form action="/todos/delete" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="id" value="{{ $todo->id }}">
-                        <button style="padding:6px 12px; background:#ff0000; color:white; border:none; border-radius:4px;">
-                            削除
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+                    <input type="text" name="content" value="{{ $todo->content }}"
+                        style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+
+                    <button style="padding:6px 12px; background:#0000ff; color:white; border:none; border-radius:4px;">
+                        更新
+                    </button>
+                </form>
+            </td>
+
+            {{-- カテゴリ表示 --}}
+            <td style="padding:12px; width:20%; color:#777;">
+                {{ $todo->category->name }}
+            </td>
+
+            {{-- 削除ボタン --}}
+            <td style="padding:12px; width:15%;">
+                <form action="{{ route('todos.destroy') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <input type="hidden" name="todo_id" value="{{ $todo->id }}">
+
+                    <button style="padding:6px 12px; background:#ff0000; color:white; border:none; border-radius:4px;">
+                        削除
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+    @endforeach
+</table>
+
 @endsection

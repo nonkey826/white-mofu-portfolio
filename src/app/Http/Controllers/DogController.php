@@ -7,10 +7,45 @@ use App\Models\Dog;
 
 class DogController extends Controller
 {
-    // 一覧
-    public function index()
+    // 一覧（検索 + 並び替え対応）
+    public function index(Request $request)
     {
-        $dogs = Dog::all();
+        $query = Dog::query();
+
+        // 🔍 キーワード検索（名前＋犬種）
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where(function($q) use ($keyword) {
+                $q->where('name', 'like', "%{$keyword}%")
+                  ->orWhere('breed', 'like', "%{$keyword}%");
+            });
+        }
+
+        // ↕ 並び替え
+        if ($request->sort === 'name_asc') {
+            $query->orderBy('name', 'asc');
+
+        } elseif ($request->sort === 'name_desc') {
+            $query->orderBy('name', 'desc');
+
+        } elseif ($request->sort === 'id_desc') {
+            $query->orderBy('id', 'desc');
+
+        // ⭐ 体重の軽い順
+        } elseif ($request->sort === 'weight_asc') {
+            $query->orderBy('weight', 'asc');
+
+        // ⭐ 体重の重い順
+        } elseif ($request->sort === 'weight_desc') {
+            $query->orderBy('weight', 'desc');
+
+        } else {
+            // デフォルト（ID昇順）
+            $query->orderBy('id', 'asc');
+        }
+
+        $dogs = $query->get();
+
         return view('dogs.index', compact('dogs'));
     }
 
@@ -56,25 +91,10 @@ class DogController extends Controller
         return redirect()->route('dogs.index');
     }
 
-    // 押しもふ
+    // 押しもふ（お気に入り）
     public function choose($id)
     {
         session(['favorite_dog_id' => $id]);
         return redirect('/result');
-    }
-
-    // ▼▼ 検索フォーム表示
-    public function find()
-    {
-        return view('dogs.find');
-    }
-
-    // ▼▼ 検索処理
-    public function search(Request $request)
-    {
-        $input = $request->input;
-        $item = Dog::where('name', 'LIKE', "%{$input}%")->first();
-
-        return view('dogs.find', compact('item', 'input'));
     }
 }

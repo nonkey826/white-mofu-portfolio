@@ -25,45 +25,73 @@ body::before {
 
 
 @section('content')
-<div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
+<h1 class="section-title">🐾 白もふを追加する 🐾</h1>
 
-    <h1 class="text-2xl font-bold text-center mb-6">🐾 白もふを追加する 🐾</h1>
+<form action="{{ route('dogs.store') }}" method="POST" style="max-width:600px; margin:0 auto;">
+    @csrf
 
-    <form method="POST" action="{{ route('dogs.store') }}">
-        @csrf
+    <div style="display:flex; gap:20px; margin-bottom:15px;">
+        <div style="flex:1;">
+            <label>名前：</label>
+            <input type="text" name="name" class="input-box">
+        </div>
 
-        <label class="block font-bold">名前：</label>
-        <input type="text" name="name"
-               class="border p-2 w-full rounded mb-4" required>
+        <div style="flex:1;">
+            <label>犬種：</label>
+            <input type="text" name="breed" class="input-box">
+        </div>
+    </div>
 
-        <label class="block font-bold">犬種：</label>
-        <input type="text" name="breed"
-               class="border p-2 w-full rounded mb-4" required>
+    <div style="display:flex; gap:20px; margin-bottom:15px;">
+        <div style="flex:1;">
+            <label>年齢：</label>
+            <input type="text" name="age" class="input-box">
+        </div>
 
-        <label class="block font-bold">年齢：</label>
-        <input type="number" name="age"
-               class="border p-2 w-full rounded mb-4" required>
+        <div style="flex:1;">
+            <label>体重：</label>
+            <input type="text" name="weight" class="input-box"> kg
+        </div>
+    </div>
 
-        <label class="block font-bold">体重：</label>
-        <input type="number" name="weight"
-               class="border p-2 w-full rounded mb-4" required>
+    <div style="margin-bottom:15px;">
+        <label>性格：</label>
+        <input type="text" name="personality" class="input-box">
+    </div>
 
-        <label class="block font-bold">性格：</label>
-        <input type="text" name="personality"
-               class="border p-2 w-full rounded mb-4" required>
+    <div style="margin-bottom:15px;">
+        <label>好きな食べ物：</label>
+        <input type="text" name="favorite_food" class="input-box">
+    </div>
 
-        <label class="block font-bold">好きな食べ物：</label>
-        <input type="text" name="favorite_food"
-               class="border p-2 w-full rounded mb-4" required>
+    <div style="margin-bottom:20px;">
+        <label>画像ファイル名（images/dogs/）：</label>
+        <input type="text" name="image" class="input-box">
+    </div>
 
-        <label class="block font-bold">画像ファイル名（images/dogs/）：</label>
-        <input type="text" name="image"
-               class="border p-2 w-full rounded mb-6">
+    <button type="submit" class="btn-main">
+        ＋ 白もふを登録する
+    </button>
+</form>
 
-        <button class="w-full py-3 bg-pink-400 text-white rounded-lg shadow hover:bg-pink-500">
-            ＋ 白もふを登録する
-        </button>
-    </form>
-</div>
+<style>
+    .input-box {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    .btn-main {
+        background: #ffb6c1;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+
 @endsection
 

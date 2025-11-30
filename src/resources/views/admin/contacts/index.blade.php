@@ -1,6 +1,101 @@
 @extends('layouts.admin')
 
+
 @section('content')
+
+<style>
+    /* 管理画面の背景 */
+    body {
+        background: #f2f7ff; /* 薄いブルー系 */
+        font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ヘッダー */
+    header {
+        background: #fff;
+        border-bottom: 2px solid #d8e7ff;
+        padding: 14px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #4a8bdc; /* 優しいブルー */
+    }
+
+    nav a {
+        margin-left: 15px;
+        text-decoration: none;
+        color: #4a8bdc;
+        font-size: 0.95rem;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* 管理画面の白いボックス */
+    .admin-container {
+        background: #ffffff;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    /* テーブル補強（壊れないようにシンプル） */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    thead {
+        background: #e9f1ff;
+        color: #333;
+        font-weight: bold;
+    }
+
+    th, td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+        background: #f7fbff;
+    }
+
+    /* ヘッダーと中身の間に余白をつける */
+.admin-container {
+    margin-top: 40px !important;   /* ←ここで離す */
+}
+
+/* お問い合わせ一覧の位置を中央に寄せる */
+.admin-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;   /* ←中央寄せ */
+    padding: 0 20px;
+}
+
+/* テーブル全体をカード風にまとめる */
+.admin-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    margin-top: 20px;
+}
+
+</style>
+
 
 <h2 class="text-lg font-semibold text-gray-700 mb-6">お問い合わせ一覧</h2>
 

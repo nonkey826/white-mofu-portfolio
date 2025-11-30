@@ -1,53 +1,126 @@
 @extends('layouts.admin')
 
-@section('title', 'お問い合わせ詳細')
-
 @section('content')
 
-<h2 class="text-lg font-semibold text-gray-700 mb-6 mt-2">お問い合わせ詳細</h2>
+<style>
+    /* 詳細カード全体 */
+    .detail-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        padding: 30px;
+        margin-top: 20px;
+    }
 
-<table class="w-full border-collapse text-sm">
-    <tbody>
-        <tr class="border-b">
-            <th class="py-3 px-3 text-left w-32 bg-gray-50">ID</th>
-            <td class="py-3 px-3">{{ $contact->id }}</td>
+    /* テーブル */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th {
+        width: 150px;
+        background: #e9f1ff;
+        color: #333;
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #dfeaff;
+        font-weight: bold;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #f0f4ff;
+        background: #fff;
+    }
+
+    /* ボタン */
+    .back-btn, .delete-btn {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+
+    .back-btn {
+        background: #f0f4ff;
+        color: #4a8bdc;
+        border: 1px solid #d0def7;
+    }
+
+    .back-btn:hover {
+        background: #e3ecff;
+    }
+
+    .delete-btn {
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .delete-btn:hover {
+        background: #d84332;
+    }
+
+    /* 下部のボタン並び */
+    .btn-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+    }
+</style>
+
+
+<h2 class="text-lg font-semibold text-gray-700 mb-6">お問い合わせ詳細</h2>
+
+<div class="detail-card">
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>{{ $contact->id }}</td>
         </tr>
 
-        <tr class="border-b">
-            <th class="py-3 px-3 text-left bg-gray-50">名前</th>
-            <td class="py-3 px-3">{{ $contact->name }}</td>
+        <tr>
+            <th>名前</th>
+            <td>{{ $contact->name }}</td>
         </tr>
 
-        <tr class="border-b">
-            <th class="py-3 px-3 text-left bg-gray-50">メール</th>
-            <td class="py-3 px-3">{{ $contact->email }}</td>
+        <tr>
+            <th>メール</th>
+            <td>{{ $contact->email }}</td>
         </tr>
 
-        <tr class="border-b">
-            <th class="py-3 px-3 text-left bg-gray-50">電話番号</th>
-            <td class="py-3 px-3">{{ $contact->tel }}</td>
+        <!-- <tr>
+            <th>電話番号</th>
+            <td>{{ $contact->tel }}</td>
+        </tr> -->
+
+        <tr>
+            <th>内容</th>
+            <td>{{ $contact->content }}</td>
         </tr>
+    </table>
 
-        <tr class="border-b">
-            <th class="py-3 px-3 text-left bg-gray-50">内容</th>
-            <td class="py-3 px-3 whitespace-pre-line">{{ $contact->content }}</td>
-        </tr>
-    </tbody>
-</table>
+    <div class="btn-area">
+        {{-- 戻るボタン --}}
+        <a href="{{ route('admin.contacts.index') }}" class="back-btn">← 一覧へ戻る</a>
 
-<div class="mt-6 flex gap-4">
-    <a href="{{ route('admin.contacts.index') }}" class="text-blue-500 underline">
-        ← 一覧へ戻る
-    </a>
+        {{-- 削除ボタン --}}
+        <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST"
+              onsubmit="return confirm('本当に削除しますか？')">
+            @csrf
+            @method('DELETE')
+            <button class="delete-btn">削除</button>
+        </form>
+    </div>
 
-    <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="POST"
-          onsubmit="return confirm('削除しますか？')">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded">
-            削除
-        </button>
-    </form>
 </div>
 
 @endsection
+

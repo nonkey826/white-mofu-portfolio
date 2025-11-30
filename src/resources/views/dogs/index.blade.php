@@ -105,7 +105,58 @@ body::before {
 @section('content')
 <div class="list-wrapper">
 
+{{-- トップへ戻るリンク --}}
+<div style="margin-bottom: 20px;">
+    <a href="/" 
+       style="
+            display: inline-block;
+            padding: 8px 14px;
+            background: #fff8f2;
+            color: #555;
+            border: 1px solid #ffd9c6;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            transition: 0.2s;
+       "
+       onmouseover="this.style.transform='translateY(-3px)'"
+       onmouseout="this.style.transform='translateY(0)'"
+    >
+        ← 白もふポータルへ戻る
+    </a>
+</div>
+
+
     <h1 class="title">🐾 白もふ図鑑 🐾</h1>
+
+    <form action="{{ route('dogs.index') }}" method="GET" style="margin-bottom: 20px; display:flex; gap:15px;">
+
+   {{-- 🔍 キーワード検索 --}}
+<input type="text" name="keyword"
+       value="{{ request('keyword') }}"
+       placeholder="名前・犬種で検索"
+       style="padding:8px 12px; border:1px solid #ccc; border-radius:6px;">
+
+{{-- ↕ 並び替え --}}
+<select name="sort" style="padding:8px 12px; border:1px solid #ccc; border-radius:6px;">
+    <option value="">ID昇順（標準）</option>
+    <option value="id_desc" {{ request('sort')=='id_desc' ? 'selected' : '' }}>ID降順</option>
+
+    <option value="name_asc" {{ request('sort')=='name_asc' ? 'selected' : '' }}>名前昇順</option>
+    <option value="name_desc" {{ request('sort')=='name_desc' ? 'selected' : '' }}>名前降順</option>
+
+    {{-- ⭐ ここから体重ソート --}}
+    <option value="weight_asc" {{ request('sort')=='weight_asc' ? 'selected' : '' }}>体重が軽い順</option>
+    <option value="weight_desc" {{ request('sort')=='weight_desc' ? 'selected' : '' }}>体重が重い順</option>
+</select>
+
+
+    <button style="padding:8px 12px; background:#4a8bdc; color:white; border:none; border-radius:6px;">
+        検索
+    </button>
+</form>
+
 
     <div class="dog-grid">
         @foreach ($dogs as $dog)
@@ -124,7 +175,7 @@ body::before {
         </div>
         @endforeach
     </div>
-    
+
     <div class="add-link">
         <a href="{{ route('dogs.create') }}">＋ 白もふを追加する</a>
     </div>

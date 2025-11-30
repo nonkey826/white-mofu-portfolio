@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/dogs/siromofu-logo-favicon.png') }}" type="image/png">
+
     <title>@yield('title', '白もふ図鑑')</title>
 
     @yield('css')   {{-- ← これを追加！ --}}

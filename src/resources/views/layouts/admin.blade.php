@@ -9,8 +9,9 @@
 
 <body class="bg-gray-100 min-h-screen">
 
-<header class="bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+<header class="bg-white shadow-sm w-full">
+    <div class="px-6 lg:px-8 py-4 flex items-center justify-between w-full">
+
         <div>
             <h1 class="text-xl font-bold text-gray-800 flex items-center gap-2">
                 🐾 白もふ管理画面
@@ -20,19 +21,17 @@
             </p>
         </div>
 
-        {{-- 右上ミニメニュー --}}
         <nav class="flex items-center gap-6 text-sm">
-            <a href="{{ route('dogs.index') }}" class="text-gray-600 hover:text-blue-500">
-                🐶 犬一覧
-            </a>
-            <a href="{{ route('admin.contacts.index') }}" class="text-gray-600 hover:text-blue-500">
-                ✉️ お問い合わせ一覧
-            </a>
+            <a href="{{ route('dogs.index') }}" class="text-gray-600 hover:text-blue-500">🐶 犬一覧</a>
+            <a href="{{ route('admin.contacts.index') }}" class="text-gray-600 hover:text-blue-500">✉️ お問い合わせ一覧</a>
         </nav>
+
     </div>
 </header>
 
-<div class="max-w-7xl mx-auto px-6 pt-10 pb-20">
+
+{{-- ここに margin-top を追加する（絶対効くやつ） --}}
+<div class="max-w-7xl mx-auto px-6 pb-20" style="margin-top:40px;">
 
     <div class="bg-white shadow-md rounded-xl p-8">
         @yield('content')

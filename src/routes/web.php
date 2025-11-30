@@ -10,11 +10,58 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Dog;
 
 
-// ▼ トップページを Todo に変更
-Route::get('/', [TodoController::class, 'index'])->name('todos.index');
+/*
+|--------------------------------------------------------------------------
+| トップページを /todos に固定
+|--------------------------------------------------------------------------
+|
+| / にアクセスしたとき、必ず /todos にリダイレクト。
+| これにより Route 名の衝突や画面の混乱を完全に防げる。
+|
+*/
+// Route::get('/', function () {
+//     return redirect('/todos');
+// });
+
+Route::get('/', function () {
+    return view('top');
+})->name('top');
 
 
-// ▼ 白もふ（Dog）機能
+
+
+/*
+|--------------------------------------------------------------------------
+| 白もふ Todo（中級）
+|--------------------------------------------------------------------------
+*/
+Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
+Route::post('/todos', [TodoController::class, 'store'])->name('todos.store');
+Route::patch('/todos/update', [TodoController::class, 'update'])->name('todos.update');
+Route::delete('/todos/delete', [TodoController::class, 'destroy'])->name('todos.destroy');
+
+// 🔥 重要：検索
+Route::get('/todos/search', [TodoController::class, 'search'])->name('todos.search');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Category（中級）
+|--------------------------------------------------------------------------
+*/
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::patch('/categories/update', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| 白もふ（Dog）機能
+|--------------------------------------------------------------------------
+*/
 Route::get('/dogs', [DogController::class, 'index'])->name('dogs.index');
 Route::get('/dogs/create', [DogController::class, 'create'])->name('dogs.create');
 Route::post('/dogs', [DogController::class, 'store'])->name('dogs.store');
@@ -36,7 +83,12 @@ Route::get('/result', function () {
 })->name('result');
 
 
-// ▼ Contact（お問い合わせ）
+
+/*
+|--------------------------------------------------------------------------
+| Contact（お問い合わせ）
+|--------------------------------------------------------------------------
+*/
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact/confirm', [ContactController::class, 'confirm']);
 Route::post('/contact/thanks', [ContactController::class, 'store']);
@@ -47,17 +99,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
 });
 
-
-// ▼ Todoアプリ（中級）
-Route::get('/todos', [TodoController::class, 'index'])->name('todos.index');
-Route::post('/todos', [TodoController::class, 'store'])->name('todos.store');
-Route::patch('/todos/update', [TodoController::class, 'update'])->name('todos.update');
-Route::delete('/todos/delete', [TodoController::class, 'destroy'])->name('todos.destroy');
-Route::get('/todos/search', [TodoController::class, 'search'])->name('todos.search');
+Route::get('/dogs', [DogController::class, 'index'])->name('dogs.index');
 
 
-// ▼ Category（中級）
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::patch('/categories/update', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('/categories/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
