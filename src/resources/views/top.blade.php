@@ -11,7 +11,7 @@
 
     {{-- タイトル --}}
     <h1 style="
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: bold;
         color: #555;
         margin-bottom: 40px;
@@ -66,7 +66,7 @@
                 font-size: 1rem;
                 line-height: 1.6;
             ">
-                さんた & こたろー の図鑑を見たり、<br>
+                さんた & こたろー の図鑑を見たり、
                 新しい犬を登録できるよ！
             </p>
         </a>
@@ -120,8 +120,8 @@
 
     <h2 style="
         font-size: 1.5rem;
-        font-weight: 700;
-        color:#222;
+        font-weight: 600;
+        color:#555;
         margin-bottom: 15px;
     ">📩 お問い合わせ</h2>
 
@@ -147,8 +147,8 @@ onmouseout="this.style.transform='translateY(0)'">
 
     <h2 style="
         font-size: 1.5rem;
-        font-weight: 700;
-        color:#333;
+        font-weight: 600;
+        color:#555;
         margin-bottom: 15px;
     ">🔐 管理者ページ</h2>
 
@@ -157,7 +157,7 @@ onmouseout="this.style.transform='translateY(0)'">
         font-size: 1rem;
         line-height: 1.6;
     ">
-        白もふ図鑑・Todo・お問い合わせを<br>
+        白もふ図鑑・Todo・お問い合わせを
         管理する専用ページだよ。
     </p>
 </a>

@@ -24,6 +24,10 @@
         <nav class="flex items-center gap-6 text-sm">
             <a href="{{ route('dogs.index') }}" class="text-gray-600 hover:text-blue-500">🐶 犬一覧</a>
             <a href="{{ route('admin.contacts.index') }}" class="text-gray-600 hover:text-blue-500">✉️ お問い合わせ一覧</a>
+            <a href="{{ route('categories.index') }}" class="text-gray-600 hover:text-blue-500">
+    🗂 カテゴリ管理
+</a>
+
         </nav>
 
     </div>
