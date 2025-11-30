@@ -1,33 +1,90 @@
-# White Mofu Portfolio
+🔧 使用技術（Tech Stack）
+🖥️ バックエンド / フレームワーク
 
-Laravel × Docker で構築した開発環境です。  
-犬図鑑（白もふ図鑑）、Snow Man 作品一覧、問い合わせフォーム（Contact）など  
-複数アプリを統合したポートフォリオ用プロジェクトです。
+PHP 8.x
 
-## 📌 使用技術
+Laravel 10.x
 
-- Laravel 10
-- PHP 8.2
-- MySQL 8.0
-- Docker / docker-compose
-- Nginx
-- Tailwind CSS
-- Git / GitHub
+ルーティング
 
-## 📂 主な機能
+コントローラ
 
-### 🐶 白もふ図鑑（Dogs）
-- 犬種一覧・詳細
-- 画像表示
-- CRUD機能
+バリデーション
 
-### 🧊 Snow Man 作品一覧
-- メンバー管理
-- 作品追加・編集
+Blade テンプレート
 
-### ✉️ 問い合わせフォーム（Contact）
-- 入力 / 確認 / 完了
-- 管理者画面で一覧・詳細・削除
+Eloquent ORM（リレーション / 検索 / 並び替え）
 
-## 🚀 開発環境の起動
+セッション
 
+🛠️ 開発環境
+
+Docker（Laravel 開発コンテナ）
+
+PHP コンテナ
+
+MySQL コンテナ
+
+Nginx コンテナ
+
+Composer
+
+🗂 データベース
+
+MySQL 8.x
+
+マイグレーション
+
+モデル（dogs, todos, categories, contacts）
+
+Eloquent クエリ
+
+LIKE検索
+
+並び替え（orderBy）
+
+🎨 フロントエンド
+
+HTML / CSS
+
+Blade レイアウト
+
+Tailwind CSS（管理画面で使用）
+
+インラインCSS（ポータルや図鑑で使用）
+
+📦 ビルドツール
+
+Vite
+
+Tailwind / CSS のビルド
+
+JS の読み込み
+
+🖼 アセット（画像・アイコン）
+
+ロゴ画像（白もふタウン）
+
+背景パターン画像（pink-top など）
+
+favicon
+
+犬の登録用画像（サンプル）
+
+🧪 実装した機能
+
+犬図鑑 CRUD（登録 / 表示 / 編集 / 削除）
+
+犬検索（名前・犬種のキーワード検索）
+
+犬並び替え（名前順・ID順・体重順）
+
+Todoアプリ CRUD（カテゴリつき）
+
+Todo 検索・絞り込み
+
+お問い合わせフォーム
+
+管理画面（一覧 / 詳細 / 削除）
+
+白もふポータル（アプリ集トップページ）
