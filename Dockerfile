@@ -4,7 +4,7 @@
 FROM composer:2 AS composer
 
 WORKDIR /app
-COPY src /app
+COPY src/ /app
 
 RUN composer install --no-dev --optimize-autoloader
 
