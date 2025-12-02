@@ -33,7 +33,8 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
 RUN rm /etc/nginx/sites-enabled/default.conf
 
 # nginx.conf
-COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY src/nginx.conf /etc/nginx/conf.d/default.conf
+
 
 # Laravel 本番モード
 ENV APP_ENV=production
