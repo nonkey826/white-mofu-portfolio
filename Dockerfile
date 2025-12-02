@@ -1,27 +1,29 @@
-# ==============================
-# 1. Composer Install
-# ==============================
-FROM composer:2 AS composer
+# ---- Build Stage ----
+FROM php:8.2-fpm AS build
+
+RUN apt-get update && apt-get install -y \
+    zip unzip git curl libonig-dev libxml2-dev
+
+RUN docker-php-ext-install pdo pdo_mysql
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
-COPY src/ /app
+COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
 
 
-# ==============================
-# 2. PHP + Nginx コンテナ
-# ==============================
-FROM richarvey/nginx-php-fpm:latest
+# ---- Production Stage ----
+FROM nginx:1.23
+
+COPY --from=build /app /app
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /app
-COPY --from=composer /app /app
+EXPOSE 80
 
-RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
-RUN chmod -R 775 /app/storage /app/bootstrap/cache
-
-RUN rm /etc/nginx/sites-enabled/default.conf
-
-COPY docker-backup/docker/nginx/default.conf /etc/nginx/sites-enabled/default.conf
-
-ENV APP_ENV=production
+CMD ["nginx", "-g", "daemon off;"]
