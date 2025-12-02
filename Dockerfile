@@ -34,3 +34,7 @@ COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Laravel 本番モード
 ENV APP_ENV=production
+
+RUN php artisan config:clear \
+    && php artisan route:clear \
+    && php artisan view:clear
