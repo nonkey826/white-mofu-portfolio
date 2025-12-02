@@ -1,29 +1,36 @@
-# ---- Build Stage ----
-FROM php:8.2-fpm AS build
-
-RUN apt-get update && apt-get install -y \
-    zip unzip git curl libonig-dev libxml2-dev
-
-RUN docker-php-ext-install pdo pdo_mysql
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# ==============================
+# 1. Composer Build Stage
+# ==============================
+FROM composer:2 AS build
 
 WORKDIR /app
-COPY . .
 
+# Laravel のソースをコピー
+COPY src/ /app
+
+# Composer install (本番用)
 RUN composer install --no-dev --optimize-autoloader
-RUN php artisan config:cache
-RUN php artisan route:cache
-RUN php artisan view:cache
 
 
-# ---- Production Stage ----
-FROM nginx:1.23
-
-COPY --from=build /app /app
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+# ==============================
+# 2. PHP-FPM + Nginx Stage
+# ==============================
+FROM richarvey/nginx-php-fpm:latest
 
 WORKDIR /app
-EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# build ステージから vendor とソースをコピー
+COPY --from=build /app /app
+
+# 権限設定（Laravel 必須）
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
+
+# デフォルトの nginx.conf を削除
+RUN rm /etc/nginx/sites-enabled/default.conf
+
+# ★ここが重要！ファイルパスは src/docker/nginx.conf
+COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Laravel 本番モード
+ENV APP_ENV=production
