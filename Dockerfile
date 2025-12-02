@@ -22,21 +22,17 @@ WORKDIR /app
 # build ステージから vendor とソースをコピー
 COPY --from=build /app /app
 
-# 本番用 .env をコピー（場所を直した！）
-COPY .env /app/.env
-
 # 権限設定
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
-# デフォルト nginx.conf 削除
+# default nginx.conf 削除
 RUN rm /etc/nginx/sites-enabled/default.conf
 
-# nginx.conf
+# ← ← ← ここ！！この位置が正しい！
 COPY src/nginx.conf /etc/nginx/conf.d/default.conf
 
-
-# Laravel 本番モード
+# 環境モード
 ENV APP_ENV=production
 
 # キャッシュクリア
