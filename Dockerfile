@@ -17,14 +17,17 @@ FROM richarvey/nginx-php-fpm:latest
 
 WORKDIR /app
 
+# build ステージから Laravel 全体をコピー
 COPY --from=build /app /app
 
+# キャッシュ権限
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
+# default の nginx.conf を削除
 RUN rm /etc/nginx/sites-enabled/default.conf
 
-# ★ここ！！これが間違って build stage に出てるからエラーになる
+# ⭐ 正しい位置はここ！！
 COPY src/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENV APP_ENV=production
