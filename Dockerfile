@@ -24,7 +24,8 @@ RUN chmod -R 775 /app/storage /app/bootstrap/cache
 
 RUN rm /etc/nginx/sites-enabled/default.conf
 
-COPY ./docker/nginx/default.conf /etc/nginx/sites-enabled/default.conf
+COPY ./docker-backup/docker/nginx/default.conf /etc/nginx/sites-enabled/default.conf
+
 
 ENV APP_ENV=production
 
