@@ -22,6 +22,9 @@ WORKDIR /app
 # build ステージから vendor とソースをコピー
 COPY --from=build /app /app
 
+# ★ ★ ★ 本番用 .env を確実にコンテナへコピー ★ ★ ★
+COPY src/.env /app/.env
+
 # 権限設定（Laravel 必須）
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
@@ -29,7 +32,7 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
 # デフォルトの nginx.conf を削除
 RUN rm /etc/nginx/sites-enabled/default.conf
 
-# ★ここが重要！ファイルパスは src/docker/nginx.conf
+# nginx.conf を反映
 COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Laravel 本番モード
