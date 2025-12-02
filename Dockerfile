@@ -19,14 +19,11 @@ WORKDIR /app
 
 COPY --from=build /app /app
 
-# ストレージ権限
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
-# デフォルト設定削除
 RUN rm /etc/nginx/sites-enabled/default.conf || true
 
-# カスタム nginx.conf を適用
 COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 ENV APP_ENV=production
