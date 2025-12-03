@@ -1,85 +1,66 @@
-概要
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-「白もふTOWN」は、Laravel 初級〜中級で学んだ内容をまとめて実装した練習用の統合アプリです。
-犬の図鑑、Todo 管理、お問い合わせ機能の3つを1つのポータルにまとめています。
-ポートフォリオとしても使えるよう、デザインやUIにもこだわりました。
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
----
+## About Laravel
 
-🐶 1. 白もふ図鑑（Dogs）
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-犬の情報を管理できるCRUDアプリです。
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-* 犬の新規登録 / 編集 / 削除
-* 一覧表示（カードレイアウト）
-* 詳細ページ
-* 画像の設定（簡易版）
-* キーワード検索（名前・犬種）
-* 並び替え（ID / 名前）
-* お気に入り機能（session 管理）
-* TOPページのカテゴリカードから遷移可能
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-**対応教材範囲：CRUD、検索、ルーティング、ビュー整形、セッション処理**
+## Learning Laravel
 
----
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
- 📝 2. Todoアプリ（カテゴリ付き）
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-カテゴリとタスクを管理する中級仕様の Todo システムです。
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-* カテゴリ作成／編集／削除
-* Todo 作成／編集／削除
-* カテゴリに紐づいた Todo の表示（1対多リレーション）
-* 入力バリデーション
-* 一覧画面をテーブル形式で整形
-* カテゴリ管理ページとの連動
+## Laravel Sponsors
 
-**対応教材範囲：リレーション、バリデーション、Form周り、複雑なルート構成**
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
----
+### Premium Partners
 
- 📮 3. お問い合わせフォーム（Contact）
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-確認画面まで実装した本格的なフォーム機能。
+## Contributing
 
-* 入力 → 確認 → 完了 の3画面構成
-* バリデーション
-* 完了メッセージ表示
-* 管理画面で一覧／詳細／削除
-* 管理画面は Tailwind + CSSで見やすく整形
-* 背景画像付きのフォームUIを作成
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-**対応教材範囲：確認画面・管理画面・ルーティング応用・Blade整形**
+## Code of Conduct
 
----
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
- 🖥 4. ポータルTOPページ（Figmaでロゴ制作）
+## Security Vulnerabilities
 
-アプリ全体の入り口になるTOPページ。
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-* Figmaで作成したロゴを配置
-* ファビコン設定
-* 図鑑 / Todo / 問い合わせ の3メニューをカード化
-* ホバーアニメーションを追加
-* 全体を白×ブルー系の可愛いデザインで統一
+## License
 
-**対応教材範囲：Blade layout、CSS、画像素材、UI制作**
-
----
-
- 🔧 技術構成
-
-* Laravel 10
-* PHP
-* SQLite（ポートフォリオ提出用）
-* Tailwind + 独自CSS
-* Figma（ロゴ制作）
-
----
-
-📌 補足
-
-本来は Render へデプロイ予定でしたが、Docker / Nginx 部分で環境が合わず、
-今回は GitHub での提出となります。
-画面キャプチャは少なめですが、おおまかな構造と全機能は実装済みです。
-
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
