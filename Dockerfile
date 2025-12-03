@@ -29,7 +29,7 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
 RUN rm /etc/nginx/sites-enabled/default.conf || true
 
 # ★ ここが重要（あなたのパスに合わせた正しい COPY）
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # 本番設定
 ENV APP_ENV=production
