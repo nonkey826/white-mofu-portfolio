@@ -29,7 +29,8 @@ RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
 RUN rm /etc/nginx/sites-enabled/default.conf || true
 
 # ★ あなたのリポジトリ構成に合わせた「正しいパス」
-COPY src/docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 
 # 本番設定
 ENV APP_ENV=production
